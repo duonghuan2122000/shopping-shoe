@@ -1,0 +1,8 @@
+.item_product {
+    transition: top linear 1s;
+    position: relative;
+}
+
+.item_product:hover {
+    top: -1rem;
+}
