@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/SlideShow.module.css';
 interface SlideShowProps {
-    data: Array<any>;
+    data: string[];
     duration?: number;
 }
 
@@ -24,7 +24,7 @@ const SlideShow: React.FC<SlideShowProps> = (props: SlideShowProps) => {
 
     const listSlide = props.data.map((slide, index) => (
         <figure key={index} className={styles.fade + ' image'} style={{ display: currentIndex == index ? 'block': 'none' }}>
-            <img src="https://bulma.io/images/placeholders/128x128.png" />
+            <img src={slide} />
         </figure>
     ));
 
