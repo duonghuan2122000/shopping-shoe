@@ -94,8 +94,8 @@ const Home: React.FC = () => {
   });
 
 
-  const renderProducts = products.data.map(product => (
-    <ItemProduct {...product} />
+  const renderProducts = products.data.map((product, index) => (
+    <ItemProduct key={index} {...product} />
   ));
 
   return (

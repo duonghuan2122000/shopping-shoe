@@ -18,18 +18,22 @@ interface Color {
     images: string[];
 }
 
+const numberFormat = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+
 const ItemProduct: React.FC<ItemProductProps> = (props: ItemProductProps) => {
+
+    const formatNumber = (num: number) => numberFormat.format(num);
 
     const renderPriceProduct = props.discount > 0 ?
         (
             <div>
-                <s>{props.price}</s>
+                <s>{formatNumber(props.price)}</s>
                 <span> </span>
-                <span className="has-text-danger">{props.price * (100 - props.discount) / 100}</span>
+                <span className="has-text-danger">{formatNumber(props.price * (100 - props.discount) / 100)}</span>
             </div>
         ) : (
             <div>
-                <span>{props.price}</span>
+                <span>{formatNumber(props.price)}</span>
             </div>
         );
 

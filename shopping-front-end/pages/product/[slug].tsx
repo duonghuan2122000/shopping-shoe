@@ -18,6 +18,8 @@ interface ColorState {
     images: string[];
 }
 
+const numberFormat = new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'});
+
 const Product: React.FC = () => {
 
     const [product] = React.useState<ProductState>({
@@ -50,6 +52,21 @@ const Product: React.FC = () => {
         <button key={index} className="button" onClick={() => onChangeColor(color)}>{color.name}</button>
     ));
 
+    const formatNumber = (num: number) => numberFormat.format(num);
+
+    const renderPriceProduct = product.discount > 0 ?
+        (
+            <div>
+                <s>{formatNumber(product.price)}</s>
+                <span> </span>
+                <span className="has-text-danger">{formatNumber(product.price * (100 - product.discount) / 100)}</span>
+            </div>
+        ) : (
+            <div>
+                <span>{formatNumber(product.price)}</span>
+            </div>
+        );
+
 
     const onChangeColor = (color: ColorState) => {
         console.log('change color');
@@ -67,12 +84,7 @@ const Product: React.FC = () => {
 
                         </div>
                         <div className="column is-8">
-                            <p className="is-size-4">{product.name}</p>
-                            <p>
-                                <s>{product.price}</s>
-                                <span> </span>
-                                <span className="has-text-danger">{product.price * (100 - product.discount) / 100}</span>
-                            </p>
+                            {renderPriceProduct}
 
                             <br />
 
